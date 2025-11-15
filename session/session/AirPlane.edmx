@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AirPlaneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Airline">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameF" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="logo" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="AirPlaneT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AirPlane_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="company_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Logo" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Capacity" Type="int" Nullable="false" />
+          <Property Name="YearMade" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="SeriesNumber" Type="int" Nullable="false" />
+          <Property Name="img" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="flight_attendant">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="family" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="year_employment" Type="nvarchar" MaxLength="10" />
+          <Property Name="personal_img" Type="varbinary(max)" />
+          <Property Name="birthday" Type="nvarchar" MaxLength="10" />
+          <Property Name="Email" Type="nvarchar" MaxLength="320" />
+          <Property Name="Airline" Type="nvarchar" MaxLength="50" />
+          <Property Name="AirLineLogo" Type="varbinary(max)" />
+          <Property Name="character" Type="nvarchar" MaxLength="8" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action" Type="nvarchar" MaxLength="10" />
+          <Property Name="ActionTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="pilot">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="NameFamily" Type="nvarchar" MaxLength="60" />
+          <Property Name="code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="year_employment" Type="nvarchar" MaxLength="11" />
+          <Property Name="personal_img" Type="varbinary(max)" />
+          <Property Name="birthday" Type="nvarchar" MaxLength="10" />
+          <Property Name="Email" Type="nvarchar" MaxLength="320" />
+          <Property Name="character" Type="nvarchar" MaxLength="5" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Scan" Type="varbinary(max)" />
+          <Property Name="Des" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Passwords" Type="nvarchar" MaxLength="64" />
+          <Property Name="Email" Type="nvarchar" MaxLength="320" />
+          <Property Name="Birthday" Type="nvarchar" MaxLength="10" />
+          <Property Name="img" Type="varbinary(max)" />
+        </EntityType>
+        <EntityContainer Name="AirPlaneModelStoreContainer">
+          <EntitySet Name="Airline" EntityType="Self.Airline" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AirPlaneT" EntityType="Self.AirPlaneT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="flight_attendant" EntityType="Self.flight_attendant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pilot" EntityType="Self.pilot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AirPlaneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AirPlaneT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AirPlane_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="company_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Capacity" Type="Int32" Nullable="false" />
+          <Property Name="YearMade" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SeriesNumber" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="flight_attendant">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="year_employment" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="personal_img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="birthday" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="character" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="family" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Airline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AirLineLogo" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ActionTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="pilot">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="NameFamily" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="year_employment" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="personal_img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="birthday" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="character" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Scan" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Passwords" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="AirPlaneEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AirPlaneTs" EntityType="Self.AirPlaneT" />
+          <EntitySet Name="flight_attendant" EntityType="Self.flight_attendant" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="pilots" EntityType="Self.pilot" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Airlines" EntityType="AirPlaneModel.Airline" />
+        </EntityContainer>
+        <EntityType Name="Airline">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NameF" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AirPlaneModelStoreContainer" CdmEntityContainer="AirPlaneEntities1">
+          <EntitySetMapping Name="AirPlaneTs">
+            <EntityTypeMapping TypeName="AirPlaneModel.AirPlaneT">
+              <MappingFragment StoreEntitySet="AirPlaneT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AirPlane_Name" ColumnName="AirPlane_Name" />
+                <ScalarProperty Name="company_Name" ColumnName="company_Name" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="YearMade" ColumnName="YearMade" />
+                <ScalarProperty Name="SeriesNumber" ColumnName="SeriesNumber" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flight_attendant">
+            <EntityTypeMapping TypeName="AirPlaneModel.flight_attendant">
+              <MappingFragment StoreEntitySet="flight_attendant">
+                <ScalarProperty Name="AirLineLogo" ColumnName="AirLineLogo" />
+                <ScalarProperty Name="Airline" ColumnName="Airline" />
+                <ScalarProperty Name="family" ColumnName="family" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="year_employment" ColumnName="year_employment" />
+                <ScalarProperty Name="personal_img" ColumnName="personal_img" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="character" ColumnName="character" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="AirPlaneModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="ActionTime" ColumnName="ActionTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pilots">
+            <EntityTypeMapping TypeName="AirPlaneModel.pilot">
+              <MappingFragment StoreEntitySet="pilot">
+                <ScalarProperty Name="Des" ColumnName="Des" />
+                <ScalarProperty Name="NameFamily" ColumnName="NameFamily" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="year_employment" ColumnName="year_employment" />
+                <ScalarProperty Name="personal_img" ColumnName="personal_img" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="character" ColumnName="character" />
+                <ScalarProperty Name="Scan" ColumnName="Scan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="AirPlaneModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Airlines">
+            <EntityTypeMapping TypeName="AirPlaneModel.Airline">
+              <MappingFragment StoreEntitySet="Airline">
+                <ScalarProperty Name="NameF" ColumnName="NameF" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
